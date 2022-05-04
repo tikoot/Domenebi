@@ -13,7 +13,7 @@ jQuery(document).ready(function(){
     $(".link").on("click", function() { 
         $(this).toggleClass("active");
         $(this).parent().siblings().find("a").removeClass("active");
-      
+        
     });
 
     

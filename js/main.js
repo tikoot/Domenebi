@@ -70,7 +70,7 @@ $('document').ready(function(){
         return Math.round(val / 3);
   }
    domainList.forEach((obj) => {
-   let products = `<div class="each_product" data-name="${obj.domainName}"data-extenstion = "${obj.domainExtension} "data-price=" ${obj.price} "categories=" ${obj.categories[0]} " categoriesTwo=" ${obj.categories[1]} " whole-name = "${obj.domainName+obj.domainExtension}">
+   let products = `<div class="each_product" data-name="${obj.domainName}"data-extenstion = "${obj.domainExtension} "data-price=" ${obj.price} "categories="${obj.categories[0]}" categoriestwo="${obj.categories[1]}" whole-name = "${obj.domainName+obj.domainExtension}">
    <div class="each_product_wrap"> <button class="arrow_btn">  </button> <p class="product_name">${obj.domainName + obj.domainExtension}</p> <div class="product_price"> <span class="price_one">${obj.price} ₾ </span>
    <span class="price_two">${ geltoUsd(obj.price)}  $ </span> </div> <button class="cart_btn"> <p class="add_cart"><span>დამატება</span><img src="assets/cart.svg" alt="cart"></p> </button> </div> </div>`;
    $('.product_wrap').append(products);
@@ -93,9 +93,12 @@ function addToCart(){
        cartcount.innerHTML = addItem;
        
      
-   
+       localStorage.setItem('cart', addItem);
+       
    });
 
+  
+   
 }
 
  
@@ -124,28 +127,28 @@ function filterByCategory(){
  }
  
  
- function filterProducts() {
+ function filterProducts() { 
     checkboxValues = grabCheckboxValues();
-     console.log(checkboxValues);
-     let products = document.querySelectorAll('.each_product')
-       
-     for(let i = 0 ; i < products.length; i++){
-         let productId = products[i].getAttribute('categories');
-         let productIdTwo = products[i].getAttribute('categoriestwo');    
-         let result = (arr, target) => target.every((v) => arr.includes(v));
-         let resultTwo = (arr, target) => target.every((v) => arr.includes(v));
-         let isMatchTwo = resultTwo(productIdTwo, checkboxValues); 
- 
-         let isMatch = result(productId, checkboxValues);
-         if (isMatch || isMatchTwo ) {
-             $(products[i]).css("display","block");
-     }else if(!isMatch || !isMatchTwo){
-         $(products[i]).css("display","none");
-         }
-     }
+    console.log(checkboxValues);
+    let products = document.querySelectorAll('.each_product')
+      
+    for(let i = 0 ; i < products.length; i++){
+        let productId = products[i].getAttribute('categories');
+        let productIdTwo = products[i].getAttribute('categoriestwo');    
+        let result = (arr, target) => target.every((v) => arr.includes(v));
+        let resultTwo = (arr, target) => target.every((v) => arr.includes(v));
+        let isMatchTwo = resultTwo(productIdTwo, checkboxValues); 
+
+        let isMatch = result(productId, checkboxValues);
+        if (isMatch || isMatchTwo ) {
+            $(products[i]).css("display","block");
+    }else if(!isMatch || !isMatchTwo){
+        $(products[i]).css("display","none");
+        }
+    }
+} 
  } 
  
-}
 
 
 
