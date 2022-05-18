@@ -16,8 +16,6 @@ jQuery(document).ready(function(){
         
     });
 
-    
-
 
     $(".sort_filter_btn").click(function(){
         $(".filter_wrap").addClass("filter_wrap_sort")

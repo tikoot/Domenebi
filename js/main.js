@@ -53,20 +53,17 @@ $('document').ready(function(){
     filterByCategory();
     filterByDomain();
     addToCart();
+
     function addCategories(){
-
     categories.forEach((obj) => {
-    let category = `<label class="each_categorie"> <input class="each_checkbox" type="checkbox"  name=" ${obj.id}" 
-    value=" ${obj.id}" id=" ${obj.id}"> <span class="checkmark"></span> <span class="each_categorie_text"> ${obj.name} </span> </label> `;
-
+    let category = `<label class="each_categorie"> <input class="each_checkbox" type="radio"  name="checkCategorie" 
+    value="${obj.id}" id="${obj.name}"> <span class="checkmark"></span> <span class="each_categorie_text"> ${obj.name} </span> </label> `;
        $('.categories_wrap').append(category);
-
    });
-
 }
 
    function addProducts(){
-    function geltoUsd(val){
+     function geltoUsd(val){
         return Math.round(val / 3);
   }
    domainList.forEach((obj) => {
@@ -79,7 +76,6 @@ $('document').ready(function(){
 }
 
 function addToCart(){
-
    let addItem = 0;
    $('.cart_btn').one("click", function(){
        $(this).addClass('active');
@@ -100,11 +96,6 @@ function addToCart(){
   
    
 }
-
- 
-
-
-
 
 
 
